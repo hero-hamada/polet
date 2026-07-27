@@ -239,6 +239,20 @@ body {
   pointer-events: none; z-index: 2;
 }
 
+/* ── SPARKLES & CAKES ── */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 7;
+  font-size: 1.4rem;
+  animation: decoFloat var(--dur) ease-in-out infinite;
+  opacity: 0.85;
+}
+@keyframes decoFloat {
+  0%,100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+  50%     { transform: translateY(-12px) rotate(15deg) scale(1.15); opacity: 1; }
+}
+
 /* ── PHOTO CARDS ── */
 .photo-card {
   position: absolute;
@@ -251,8 +265,16 @@ body {
   z-index: 6;
   animation: fadeUp 1s ease both;
 }
-.photo-card:nth-child(1) { left: 1%; top: 5%; transform: rotate(-3deg); animation-delay: 0.3s; }
-.photo-card:nth-child(2) { right: 1%; top: 5%; transform: rotate(3deg); animation-delay: 0.5s; }
+.photo-card:nth-child(1) { left: 1%; top: 5%; animation: photoFloat1 3s ease-in-out infinite; animation-delay: 0.3s; }
+.photo-card:nth-child(2) { right: 1%; top: 5%; animation: photoFloat2 3.4s ease-in-out infinite; animation-delay: 0.6s; }
+@keyframes photoFloat1 {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%     { transform: translateY(-14px) rotate(-3deg); }
+}
+@keyframes photoFloat2 {
+  0%,100% { transform: translateY(0) rotate(3deg); }
+  50%     { transform: translateY(-14px) rotate(3deg); }
+}
 
 /* puff clouds around photos */
 .photo-card::before, .photo-card::after,
@@ -272,8 +294,7 @@ body {
 .photo-card img {
   width: 100%;
   display: block;
-  aspect-ratio: 3/4;
-  object-fit: cover;
+  height: auto;
   border-radius: 0;
 }
 </style>
@@ -502,6 +523,26 @@ tickConfetti();
 setTimeout(() => burst(innerWidth/2, -20, 90), 600);
 setTimeout(() => burst(innerWidth * 0.25, -20, 50), 1100);
 setTimeout(() => burst(innerWidth * 0.75, -20, 50), 1400);
+
+// ── SPARKLES & CAKES ──
+(function() {
+  const sky = document.getElementById('sky');
+  const items = [
+    // around left photo
+    { emoji: '🎂', left: '14%', top: '75%' },
+    { emoji: '🎂', left: '2%',  top: '40%' },
+    // around right photo
+    { emoji: '🎂', left: '90%', top: '78%' },
+    { emoji: '🎂', left: '96%', top: '35%' },
+  ];
+  items.forEach((item, i) => {
+    const el = document.createElement('span');
+    el.className = 'deco';
+    el.textContent = item.emoji;
+    el.style.cssText = `left:${item.left};top:${item.top};--dur:${2.2 + (i % 4) * 0.4}s;animation-delay:-${i * 0.3}s;`;
+    sky.appendChild(el);
+  });
+})();
 </script>
 </body>
 </html>
