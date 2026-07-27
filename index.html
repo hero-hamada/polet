@@ -242,22 +242,23 @@ body {
 /* ── PHOTO CARDS ── */
 .photo-card {
   position: absolute;
-  width: min(180px, 22vw);
-  border-radius: 16px;
+  width: min(260px, 28vw);
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.06);
+  border: none;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+  background: none;
   z-index: 6;
   animation: fadeUp 1s ease both;
 }
-.photo-card:nth-child(1) { left: 2%; top: 10%; transform: rotate(-3deg); animation-delay: 0.3s; }
-.photo-card:nth-child(2) { right: 2%; top: 10%; transform: rotate(3deg); animation-delay: 0.5s; }
+.photo-card:nth-child(1) { left: 1%; top: 5%; transform: rotate(-3deg); animation-delay: 0.3s; }
+.photo-card:nth-child(2) { right: 1%; top: 5%; transform: rotate(3deg); animation-delay: 0.5s; }
 .photo-card img {
   width: 100%;
   display: block;
   aspect-ratio: 3/4;
   object-fit: cover;
+  border-radius: 0;
 }
 </style>
 </head>
