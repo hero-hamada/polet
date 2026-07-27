@@ -253,6 +253,22 @@ body {
 }
 .photo-card:nth-child(1) { left: 1%; top: 5%; transform: rotate(-3deg); animation-delay: 0.3s; }
 .photo-card:nth-child(2) { right: 1%; top: 5%; transform: rotate(3deg); animation-delay: 0.5s; }
+
+/* puff clouds around photos */
+.photo-card::before, .photo-card::after,
+.photo-card .puff1, .photo-card .puff2 {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: -1;
+}
+.photo-card::before { width: 120px; height: 60px; top: -20px; left: -30px; }
+.photo-card::after  { width: 100px; height: 50px; bottom: -18px; right: -25px; }
+.photo-card .puff1  { width: 90px;  height: 45px; top: 30%;  left: -35px; }
+.photo-card .puff2  { width: 80px;  height: 40px; top: 55%;  right: -30px; }
 .photo-card img {
   width: 100%;
   display: block;
@@ -275,8 +291,8 @@ body {
 <div id="hint">click a plane &nbsp;·&nbsp; one holds a secret</div>
 
 <div id="sky">
-  <div class="photo-card"><img src="1.jpg" alt="Photo 1"></div>
-  <div class="photo-card"><img src="2.jpg" alt="Photo 2"></div>
+  <div class="photo-card"><span class="puff1"></span><span class="puff2"></span><img src="1.jpg" alt="Photo 1"></div>
+  <div class="photo-card"><span class="puff1"></span><span class="puff2"></span><img src="2.jpg" alt="Photo 2"></div>
 </div>
 
 <div id="cert-overlay">
